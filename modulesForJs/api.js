@@ -102,5 +102,6 @@ export function login({ login, password }) {
     }).then((response) => {
 
         return response.json();
-    })
+
+    });
 }

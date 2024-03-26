@@ -1,28 +1,9 @@
-import { login, setToken } from "./api.js";
-
-// Логин пейдж логика 
-export function logFunc() {
-
-    const buttonLoginElement = document.getElementById('log-button');
-    const loginInputElement = document.getElementById('login-input');
-    const passwordInputElement = document.getElementById('password-input');
-
-    buttonLoginElement.addEventListener('click', () => {
-        login({
-            login: loginInputElement.value,
-            password: passwordInputElement.value,
-        }).then((responseData) => {
-            setToken(responseData.user.token);
-        });
-        loginInputElement.value = '';
-        passwordInputElement.value = '';
-    });
-};
+import { fetchAndRenderComments, login, setToken } from "./api.js";
 
 // // Рендер-логин функция
 
-export const renderLogin = () => {
-    const appElement = document.getElementById('app')
+export const renderLogin = ({getComments}) => {
+    const appElement = document.getElementById('app0');
     const loginHtml =
         `<div id="app" class="add-form login-form">
     <div class="add-form-log">
@@ -43,6 +24,23 @@ export const renderLogin = () => {
     </div>
         </div>`;
     appElement.innerHTML = loginHtml;
+
+    const buttonLoginElement = document.getElementById('log-button');
+    const loginInputElement = document.getElementById('login-input');
+    const passwordInputElement = document.getElementById('password-input');
+
+    buttonLoginElement.addEventListener('click', () => {
+        login({
+            login: loginInputElement.value,
+            password: passwordInputElement.value,
+        }).then((responseData) => {
+            setToken(responseData.user.token);
+        }).then(() => {
+            getComments();
+        });
+        loginInputElement.value = '';
+        passwordInputElement.value = '';
+    });
 }
 
 
