@@ -1,9 +1,10 @@
-import { fetchAndRenderComments, login, setToken } from "./api.js";
+import { login, setToken } from "./api.js";
 
 // // Рендер-логин функция
 
 export const renderLogin = ({getComments}) => {
     const appElement = document.getElementById('app0');
+
     const loginHtml =
         `<div id="app" class="add-form login-form">
     <div class="add-form-log">
@@ -40,6 +41,7 @@ export const renderLogin = ({getComments}) => {
         });
         loginInputElement.value = '';
         passwordInputElement.value = '';
+        appElement.classList.add('hide');
     });
 }
 

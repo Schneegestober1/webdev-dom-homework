@@ -27,7 +27,7 @@ function getComments() {
     });
     comments = appComments;
     renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay });
-    preLoadElement.classList.add('hide');
+    // preLoadElement.classList.add('hide');
   });
 }
 

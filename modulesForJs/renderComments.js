@@ -1,7 +1,4 @@
-
 // Рендер-функция
-
-const listElement = document.getElementById('list');
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
   const appElement = document.getElementById('app1');
