@@ -1,6 +1,6 @@
 "use strict";
 
-import { fetchAndRenderComments, postComment } from "./modulesForJs/api.js";
+import { fetchAndRenderComments, postComment, login } from "./modulesForJs/api.js";
 import { delay } from "./modulesForJs/delay.js";
 import { initLikeButtonListeners } from "./modulesForJs/likeButton.js";
 import { removeValidation } from "./modulesForJs/removeValid.js";
@@ -12,6 +12,19 @@ const nameInputElement = document.getElementById('name-input');
 const commentInputElement = document.getElementById('comment-input');
 const preLoadElement = document.getElementById('preloader');
 
+const buttonLoginElement = document.getElementById('log-button');
+const loginInputElement = document.getElementById('login-input');
+const passwordInputElement = document.getElementById('password-input');
+
+buttonLoginElement.addEventListener('click', () => {
+  login({
+    login: loginInputElement.value,
+    password: passwordInputElement.value,
+  }).then((responseData) => {
+    console.log(responseData);
+    responseData = user.token;
+  })
+})
 
 
 // const commentsBlockElement = document.getElementById('comments-block');

@@ -3,7 +3,9 @@
 const host = 'https://wedev-api.sky.pro/api/v2/rustam-kholov/comments';
 const userUrl = 'https://wedev-api.sky.pro/api/user';
 
-let token = '';
+
+
+
 
 
 export function fetchAndRenderComments() {
@@ -93,6 +95,6 @@ export function login({login, password}) {
         }),
     }).then((response) => {
 
-        return response.JSON();
+        return response.json();
     })
 }
