@@ -1,4 +1,5 @@
 // Рендер-функция
+import { postComment } from "./api.js";
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
   const appElement = document.getElementById('app1');
