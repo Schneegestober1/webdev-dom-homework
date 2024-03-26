@@ -1,6 +1,6 @@
 "use strict";
 
-import { fetchAndRenderComments, postComment } from "./modulesForJs/api.js";
+import { fetchAndRenderComments} from "./modulesForJs/api.js";
 import { delay } from "./modulesForJs/delay.js";
 import { initLikeButtonListeners } from "./modulesForJs/likeButton.js";
 import { renderLogin } from "./modulesForJs/loginPage.js";
