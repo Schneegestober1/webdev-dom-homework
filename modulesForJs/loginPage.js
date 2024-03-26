@@ -1,4 +1,4 @@
-import { login, setToken, token } from "./api.js";
+import { login, setToken } from "./api.js";
 
 // Логин пейдж логика 
 export function logFunc() {
