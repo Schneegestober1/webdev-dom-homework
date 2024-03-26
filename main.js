@@ -1,9 +1,9 @@
 "use strict";
 
-import { fetchAndRenderComments, postComment, login } from "./modulesForJs/api.js";
+import { fetchAndRenderComments, postComment} from "./modulesForJs/api.js";
 import { delay } from "./modulesForJs/delay.js";
 import { initLikeButtonListeners } from "./modulesForJs/likeButton.js";
-import { logFunc } from "./modulesForJs/loginPage.js";
+import { logFunc, renderLogin } from "./modulesForJs/loginPage.js";
 import { removeValidation } from "./modulesForJs/removeValid.js";
 import { renderComments } from "./modulesForJs/renderComments.js";
 import { reply } from "./modulesForJs/reply.js";
@@ -31,8 +31,9 @@ function getComments() {
     preLoadElement.classList.add('hide');
   });
 }
-getComments();
 
+// getComments();
+renderLogin();
 
 
 //  Массив для комментов 
