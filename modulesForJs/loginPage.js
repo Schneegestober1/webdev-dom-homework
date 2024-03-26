@@ -35,13 +35,14 @@ export const renderLogin = ({getComments}) => {
             login: loginInputElement.value,
             password: passwordInputElement.value,
         }).then((responseData) => {
+            console.log(responseData);
             setToken(responseData.user.token);
+            appElement.classList.add('hide');
         }).then(() => {
             getComments();
         });
         loginInputElement.value = '';
         passwordInputElement.value = '';
-        appElement.classList.add('hide');
     });
 }
 
