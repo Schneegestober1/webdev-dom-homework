@@ -12,6 +12,8 @@ const nameInputElement = document.getElementById('name-input');
 const commentInputElement = document.getElementById('comment-input');
 const preLoadElement = document.getElementById('preloader');
 
+
+// Логин пейдж логика 
 const buttonLoginElement = document.getElementById('log-button');
 const loginInputElement = document.getElementById('login-input');
 const passwordInputElement = document.getElementById('password-input');
