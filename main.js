@@ -13,22 +13,6 @@ const nameInputElement = document.getElementById('name-input');
 const commentInputElement = document.getElementById('comment-input');
 const preLoadElement = document.getElementById('preloader');
 
-
-// // Логин пейдж логика 
-// const buttonLoginElement = document.getElementById('log-button');
-// const loginInputElement = document.getElementById('login-input');
-// const passwordInputElement = document.getElementById('password-input');
-
-// buttonLoginElement.addEventListener('click', () => {
-//   login({
-//     login: loginInputElement.value,
-//     password: passwordInputElement.value,
-//   }).then((responseData) => {
-//     console.log(responseData);
-//     responseData = user.token;
-//   })
-// })
-
 // Получениe комментов с сервера
 function getComments() {
 
@@ -48,6 +32,8 @@ function getComments() {
   });
 }
 getComments();
+
+
 
 //  Массив для комментов 
 let comments = [];
