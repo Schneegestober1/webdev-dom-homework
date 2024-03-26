@@ -1,6 +1,7 @@
 // Рендер-функция
 import { postComment } from "./api.js";
 
+
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
   const appElement = document.getElementById('app1');
   const commentsHtml = comments.map((comment, index) => {
@@ -62,7 +63,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     addButtonElement.disabled = true;
     addButtonElement.textContent = 'Комментарий добавляется.....';
 
-    postComment(
+    return postComment(
 
       { name: nameInputElement.value },
       { text: commentInputElement.value, }

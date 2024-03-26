@@ -9,6 +9,7 @@ export const setToken = (newToken) => {
 };
 
 export function fetchAndRenderComments() {
+
     return fetch(
 
         host,
@@ -17,8 +18,10 @@ export function fetchAndRenderComments() {
             method: "GET",
             headers: {
                 Autorization: `Bearer ${token}`,
-            }
-        }
+            },
+        },
+
+
     ).then((response) => {
 
         if (response.status === 500) {
@@ -46,7 +49,6 @@ export function fetchAndRenderComments() {
 
 
 export function postComment({ name }, { text }) {
-
     return fetch(
         host,
         {
@@ -63,6 +65,10 @@ export function postComment({ name }, { text }) {
                     .replaceAll(">", "&gt;")
                     .replaceAll('"', "&quot;"),
             }),
+            headers: {
+                'Autorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
         }).catch(() => {
 
             alert('Кажется, у вас сломался интернет, попробуйте позже');
@@ -80,7 +86,7 @@ export function postComment({ name }, { text }) {
                 return Promise.reject('Имя и комментарий должны быть не короче 3 символов');
 
             } else {
-
+                
                 return response.json();
 
             }
