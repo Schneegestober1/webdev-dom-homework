@@ -1,5 +1,9 @@
 // Рендер-функция
-import { postComment } from "./api.js";
+import { postComment, token } from "./api.js";
+import { name } from "./api.js";
+import { getComments } from "../main.js";
+import { renderLogin } from "./loginPage.js";
+
 
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
@@ -23,15 +27,21 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     </div>
     </li>`
   }).join('');
-
+  console.log(token);
   const appHtml = `   
-        <div id="comments-block" class="comments-block">
-    <ul id="list" class="comments">
+    <div id="comments-block" class="comments-block">
+        <ul id="list" class="comments">
      ${commentsHtml}
     </ul>
-  </div>
-  <div id="add-form" class="add-form">
-    <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя" />
+    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий,
+    <a href="" id="log">авторизуйтесь</a>
+    </span>
+  </div>`;
+
+  const appHtml2 = '';
+  if (!!token) {
+    const appHtml2 = `<div id="add-form" class="add-form">
+    <input id="name-input" type="text" class="add-form-name" value=${name} disabled id="name-input" readonly/>
     <textarea id="comment-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
       rows="4"></textarea>
     <div class="add-form-row">
@@ -40,70 +50,75 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     <div class="add-form-row">
       <button id="delete-button" class="add-form-button">Удалить последний комментарий</button>
     </div>
-         </div>`;
+  </div>`;
+  }
 
+  appElement.innerHTML = appHtml + appHtml2;
 
-  appElement.innerHTML = appHtml;
+  if (!!token) {
+    const addButtonElement = document.getElementById('add-button');
+    const nameInputElement = document.getElementById('name-input');
+    const commentInputElement = document.getElementById('comment-input');
 
-  const addButtonElement = document.getElementById('add-button');
-  const nameInputElement = document.getElementById('name-input');
-  const commentInputElement = document.getElementById('comment-input');
+    // Добавление нового коммента на сервер 
+    addButtonElement.addEventListener('click', () => {
+      nameInputElement.classList.remove('error');
+      commentInputElement.classList.remove('error');
 
-  // Добавление нового коммента на сервер 
-  addButtonElement.addEventListener('click', () => {
-    nameInputElement.classList.remove('error');
-    commentInputElement.classList.remove('error');
-
-    if (nameInputElement.value.trim() === '' || commentInputElement.value.trim() === '') {
-      nameInputElement.classList.add('error');
-      commentInputElement.classList.add('error');
-      return;
-    };
-
-    addButtonElement.disabled = true;
-    addButtonElement.textContent = 'Комментарий добавляется.....';
-
-    return postComment(
-
-      { name: nameInputElement.value },
-      { text: commentInputElement.value, }
-
-    ).then(() => {
-
-      return getComments();
-
-    }).then(() => {
-
-      addButtonElement.disabled = false;
-      addButtonElement.textContent = 'Добавить';
-      nameInputElement.value = '';
-      commentInputElement.value = '';
-
-    }).catch((error) => {
-
-      if (error === 'Сервер сломался, попробуй позже') {
-
-        alert('Сервер сломался, попробуй позже');
-
-        addButtonElement.disabled = false;
-        addButtonElement.textContent = 'Добавить';
-
-      } else if (error === 'Имя и комментарий должны быть не короче 3 символов') {
-
-        alert('Имя и комментарий должны быть не короче 3 символов');
-
-        addButtonElement.disabled = false;
-        addButtonElement.textContent = 'Добавить';
-
+      if (nameInputElement.value.trim() === '' || commentInputElement.value.trim() === '') {
+        nameInputElement.classList.add('error');
+        commentInputElement.classList.add('error');
+        return;
       };
-    });
-    renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay });
-  });
 
-  initLikeButtonListeners({ comments, renderComments, reply, removeValidation, delay });
-  reply({ comments });
-  removeValidation();
+      addButtonElement.disabled = true;
+      addButtonElement.textContent = 'Комментарий добавляется.....';
+
+      return postComment(
+
+        { name: nameInputElement.value },
+        { text: commentInputElement.value, }
+
+      ).then(() => {
+
+        return getComments();
+
+      }).then(() => {
+
+        addButtonElement.disabled = false;
+        addButtonElement.textContent = 'Добавить';
+        nameInputElement.value = '';
+        commentInputElement.value = '';
+
+      }).catch((error) => {
+
+        if (error === 'Сервер сломался, попробуй позже') {
+
+          alert('Сервер сломался, попробуй позже');
+
+          addButtonElement.disabled = false;
+          addButtonElement.textContent = 'Добавить';
+
+        } else if (error === 'Имя и комментарий должны быть не короче 3 символов') {
+
+          alert('Имя и комментарий должны быть не короче 3 символов');
+
+          addButtonElement.disabled = false;
+          addButtonElement.textContent = 'Добавить';
+
+        };
+        renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay, getComments });
+      });
+    });
+
+    initLikeButtonListeners({ comments, renderComments, reply, removeValidation, delay });
+    reply({ comments });
+    removeValidation();
+  };
 };
+
+
+
 
 
 

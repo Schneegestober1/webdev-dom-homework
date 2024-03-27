@@ -1,4 +1,4 @@
-import { login, setToken } from "./api.js";
+import { login, setName, setToken } from "./api.js";
 
 // // Рендер-логин функция
 
@@ -6,7 +6,7 @@ export const renderLogin = ({getComments}) => {
     const appElement = document.getElementById('app0');
 
     const loginHtml =
-        `<div id="app" class="add-form login-form">
+        `<div id="logg-form" class="add-form login-form">
     <div class="add-form-log">
         <h3>Форма входа</h3>
     </div>
@@ -24,6 +24,7 @@ export const renderLogin = ({getComments}) => {
         <a href="#" class="add-form-link">Зарегистрироваться</a>
     </div>
         </div>`;
+
     appElement.innerHTML = loginHtml;
 
     const buttonLoginElement = document.getElementById('log-button');
@@ -37,7 +38,8 @@ export const renderLogin = ({getComments}) => {
         }).then((responseData) => {
             console.log(responseData);
             setToken(responseData.user.token);
-            appElement.classList.add('hide');
+            setName(responseData.user.name);
+            // appElement.classList.add('hide');
         }).then(() => {
             getComments();
         });

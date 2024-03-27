@@ -4,8 +4,15 @@ const host = 'https://wedev-api.sky.pro/api/v2/rustam-kholov/comments';
 const userUrl = 'https://wedev-api.sky.pro/api/user/login';
 
 export let token;
+export let name;
+
+
 export const setToken = (newToken) => {
     token = newToken;
+};
+
+export const setName = (newName) => {
+    name = newName;
 };
 
 export function fetchAndRenderComments() {
@@ -16,9 +23,6 @@ export function fetchAndRenderComments() {
 
         {
             method: "GET",
-            headers: {
-                Autorization: `Bearer ${token}`,
-            },
         },
 
 
@@ -66,8 +70,7 @@ export function postComment({ name }, { text }) {
                     .replaceAll('"', "&quot;"),
             }),
             headers: {
-                'Autorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
         }).catch(() => {
 
@@ -99,7 +102,7 @@ export function login({ login, password }) {
     return fetch(userUrl, {
         method: 'POST',
         headers: {
-            Autorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
             login,
