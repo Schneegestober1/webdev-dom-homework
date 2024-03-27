@@ -6,7 +6,7 @@ export const renderLogin = ({getComments}) => {
     const appElement = document.getElementById('app0');
 
     const loginHtml =
-        `<div id="logg-form" class="add-form login-form">
+    `<div id="logg-form" class="add-form login-form">
     <div class="add-form-log">
         <h3>Форма входа</h3>
     </div>
@@ -23,7 +23,7 @@ export const renderLogin = ({getComments}) => {
     <div class="add-form-link">
         <a href="#" class="add-form-link">Зарегистрироваться</a>
     </div>
-        </div>`;
+    </div>`;
 
     appElement.innerHTML = loginHtml;
 

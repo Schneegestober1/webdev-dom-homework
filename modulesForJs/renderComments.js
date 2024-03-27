@@ -55,9 +55,12 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
 
   appElement.innerHTML = appHtml + appHtml2;
 
-  const logButtonElement = document.getElementById('log')
+  const logButtonElement = document.getElementById('log');
+  const loggFormElement = document.getElementById('logg-form');
+  const listFormElement = document.getElementById('comments-block');
   logButtonElement.addEventListener('click', () => {
-    renderLogin({ getComments });
+    loggFormElement.style.display = 'flex';
+    listFormElement.style.display = 'none';
   });
 
 
