@@ -27,16 +27,16 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     </div>
     </li>`
   }).join('');
-  console.log(token);
   const appHtml = `   
     <div id="comments-block" class="comments-block">
         <ul id="list" class="comments">
      ${commentsHtml}
     </ul>
-    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий,
+    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
     <a href="" id="log">авторизуйтесь</a>
     </span>
   </div>`;
+
 
   const appHtml2 = '';
   if (!!token) {
@@ -54,6 +54,12 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
   }
 
   appElement.innerHTML = appHtml + appHtml2;
+
+  const logButtonElement = document.getElementById('log')
+  logButtonElement.addEventListener('click', () => {
+    renderLogin({ getComments });
+  });
+
 
   if (!!token) {
     const addButtonElement = document.getElementById('add-button');
@@ -116,7 +122,6 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     removeValidation();
   };
 };
-
 
 
 
