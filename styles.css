@@ -36,7 +36,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
-
 }
 
 .comment {
@@ -164,7 +163,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* display: none; */
 }
 
 .add-form-log {

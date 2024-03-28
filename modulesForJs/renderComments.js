@@ -46,8 +46,8 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
   } else {
 
     appHtml = `   
-    <div id="comments-block" class="comments-block">
-        <ul id="list" class="comments">
+  <div id="comments-block" class="comments-block">
+    <ul id="list" class="comments">
      ${commentsHtml}
     </ul>
     <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
@@ -60,7 +60,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
 
   
 
-  appElement.innerHTML = commentsHtml + appHtml;
+  appElement.innerHTML = appHtml;
 
   if(!token) {
     
