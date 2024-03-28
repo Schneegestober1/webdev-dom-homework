@@ -1,9 +1,8 @@
 "use strict";
 
-import { fetchAndRenderComments, token } from "./modulesForJs/api.js";
+import { fetchAndRenderComments } from "./modulesForJs/api.js";
 import { delay } from "./modulesForJs/delay.js";
 import { initLikeButtonListeners } from "./modulesForJs/likeButton.js";
-import { renderLogin } from "./modulesForJs/loginPage.js";
 import { removeValidation } from "./modulesForJs/removeValid.js";
 import { renderComments } from "./modulesForJs/renderComments.js";
 import { reply } from "./modulesForJs/reply.js";

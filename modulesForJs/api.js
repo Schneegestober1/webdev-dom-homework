@@ -101,9 +101,6 @@ export function login({ login, password }) {
 
     return fetch(userUrl, {
         method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
         body: JSON.stringify({
             login,
             password,

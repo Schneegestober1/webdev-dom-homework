@@ -5,8 +5,6 @@ import { getComments } from "../main.js";
 import { renderLogin } from "./loginPage.js";
 
 
-
-
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
   const appElement = document.getElementById('app');
   const commentsHtml = comments.map((comment, index) => {
@@ -28,19 +26,12 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     </div>
     </li>`
   }).join('');
-  const appHtml = `   
-    <div id="comments-block" class="comments-block">
-        <ul id="list" class="comments">
-     ${commentsHtml}
-    </ul>
-    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
-    <a href="#" id="log">авторизуйтесь</a>
-    </span>
-  </div>`;
 
-  const appHtml2 = '';
-  if (!!token) {
-    const appHtml2 = `<div id="add-form" class="add-form">
+  let appHtml = '';
+
+  if(token) {
+
+    appHtml = `<div id="add-form" class="add-form">
     <input id="name-input" type="text" class="add-form-name" value=${name} disabled id="name-input" readonly/>
     <textarea id="comment-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
       rows="4"></textarea>
@@ -51,17 +42,35 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
       <button id="delete-button" class="add-form-button">Удалить последний комментарий</button>
     </div>
   </div>`;
+
+  } else {
+
+    appHtml = `   
+    <div id="comments-block" class="comments-block">
+        <ul id="list" class="comments">
+     ${commentsHtml}
+    </ul>
+    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
+    <a href="#" id="log">авторизуйтесь</a>
+    </span>
+  </div>`
+
   }
 
-  appElement.innerHTML = appHtml + appHtml2;
 
-  const logButtonElement = document.getElementById('log');
-  logButtonElement.addEventListener('click', () => {
-    renderLogin({getComments});
-  });
   
 
-  if (!!token) {
+  appElement.innerHTML = commentsHtml + appHtml;
+
+  if(!token) {
+    
+    const logButtonElement = document.getElementById('log');
+    logButtonElement.addEventListener('click', () => {
+      renderLogin({getComments});
+    });
+
+  } else {
+
     const addButtonElement = document.getElementById('add-button');
     const nameInputElement = document.getElementById('name-input');
     const commentInputElement = document.getElementById('comment-input');
@@ -115,6 +124,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
         };
         renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay, getComments });
       });
+      
     });
 
     initLikeButtonListeners({ comments, renderComments, reply, removeValidation, delay });
