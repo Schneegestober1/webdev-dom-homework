@@ -3,7 +3,7 @@ import { login, setName, setToken } from "./api.js";
 // // Рендер-логин функция
 
 export const renderLogin = ({getComments}) => {
-    const appElement = document.getElementById('app0');
+    const appElement = document.getElementById('app');
 
     const loginHtml =
     `<div id="logg-form" class="add-form login-form">

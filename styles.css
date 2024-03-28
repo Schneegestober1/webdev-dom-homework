@@ -160,10 +160,10 @@ body {
 .login-form {
   padding: 20px;
   margin-top: 48px;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   gap: 10px;
-  display: none;
+  /* display: none; */
 }
 
 .add-form-log {

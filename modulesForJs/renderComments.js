@@ -6,8 +6,9 @@ import { renderLogin } from "./loginPage.js";
 
 
 
+
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
-  const appElement = document.getElementById('app1');
+  const appElement = document.getElementById('app');
   const commentsHtml = comments.map((comment, index) => {
     return `<li class="comment">
     <div class="comment-header">
@@ -33,10 +34,9 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
      ${commentsHtml}
     </ul>
     <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
-    <a href="" id="log">авторизуйтесь</a>
+    <a href="#" id="log">авторизуйтесь</a>
     </span>
   </div>`;
-
 
   const appHtml2 = '';
   if (!!token) {
@@ -56,13 +56,10 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
   appElement.innerHTML = appHtml + appHtml2;
 
   const logButtonElement = document.getElementById('log');
-  const loggFormElement = document.getElementById('logg-form');
-  const listFormElement = document.getElementById('comments-block');
   logButtonElement.addEventListener('click', () => {
-    loggFormElement.style.display = 'flex';
-    listFormElement.style.display = 'none';
+    renderLogin({getComments});
   });
-
+  
 
   if (!!token) {
     const addButtonElement = document.getElementById('add-button');
@@ -125,6 +122,8 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     removeValidation();
   };
 };
+
+
 
 
 
