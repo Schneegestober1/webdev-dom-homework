@@ -99,20 +99,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
 
       ).then(() => {
 
-        fetchAndRenderComments().then((responseData) => {
-
-          const appComments = responseData.comments.map((comment) => {
-            return {
-              name: comment.author.name,
-              date: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
-              comment: comment.text,
-              likesCounter: comment.likes,
-              isLiked: comment.isLiked,
-            };
-          });
-          comments = appComments;
-          renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay });
-        })
+        return getComments();
 
       }).then(() => {
 
