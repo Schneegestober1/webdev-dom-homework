@@ -6,6 +6,7 @@ import { initLikeButtonListeners } from "./modulesForJs/likeButton.js";
 import { removeValidation } from "./modulesForJs/removeValid.js";
 import { renderComments } from "./modulesForJs/renderComments.js";
 import { reply } from "./modulesForJs/reply.js";
+import { format } from "date-fns";
 
 // Получениe комментов с сервера
 export function getComments() {
