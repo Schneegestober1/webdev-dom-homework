@@ -8,6 +8,7 @@ import { renderComments } from "./modulesForJs/renderComments.js";
 import { reply } from "./modulesForJs/reply.js";
 import { format } from "date-fns";
 
+
 // Получениe комментов с сервера
 export function getComments() {
 
@@ -15,7 +16,8 @@ export function getComments() {
     const appComments = responseData.comments.map((comment) => {
       return {
         name: comment.author.name,
-        date: new Date(comment.date).toLocaleDateString('ru-RU', { year: '2-digit', month: '2-digit', day: '2-digit' }) + ' ' + new Date(comment.date).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        // date: new Date(comment.date).toLocaleDateString('ru-RU', { year: '2-digit', month: '2-digit', day: '2-digit' }) + ' ' + new Date(comment.date).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        date: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
         comment: comment.text,
         likesCounter: comment.likes,
         isLiked: comment.isLiked,
@@ -23,11 +25,12 @@ export function getComments() {
     });
     comments = appComments;
     renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay });
+    // preLoadElement.classList.add('hide');
   });
 }
 
 getComments();
-
+// renderLogin({ getComments });
 
 
 

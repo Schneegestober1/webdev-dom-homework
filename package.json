@@ -4,7 +4,7 @@
   "description": "it is my homework ",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development --watch"
   },
   "author": "rus",
   "license": "ISC",

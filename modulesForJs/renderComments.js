@@ -1,8 +1,9 @@
 // Рендер-функция
-import { postComment, token } from "./api.js";
+import { fetchAndRenderComments, postComment, token } from "./api.js";
 import { name } from "./api.js";
 import { getComments } from "../main.js";
 import { renderLogin } from "./loginPage.js";
+import { format } from "date-fns";
 
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
@@ -98,7 +99,20 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
 
       ).then(() => {
 
-        return getComments();
+        fetchAndRenderComments().then((responseData) => {
+
+          const appComments = responseData.comments.map((comment) => {
+            return {
+              name: comment.author.name,
+              date: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
+              comment: comment.text,
+              likesCounter: comment.likes,
+              isLiked: comment.isLiked,
+            };
+          });
+          comments = appComments;
+          renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay });
+        })
 
       }).then(() => {
 
