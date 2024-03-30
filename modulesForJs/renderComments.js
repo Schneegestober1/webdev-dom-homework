@@ -43,9 +43,6 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     <div class="add-form-row">
       <button id="add-button" class="add-form-button">Написать</button>
     </div>
-    <div class="add-form-row">
-      <button id="delete-button" class="add-form-button">Удалить последний комментарий</button>
-    </div>
   </div>`;
 
   } else {

@@ -107,7 +107,20 @@ export function login({ login, password }) {
         }),
     }).then((response) => {
 
+        if (response.status === 400) {
+            alert('Данные не верны');
+            throw new Error('Данные не верны');
+          }
+
         return response.json();
+
+    }).catch(() => {
+
+        if (err.message === 'Failed to fetch') {
+
+            alert('Кажется, у вас сломался интернет, попробуйте позже');
+            
+        };
 
     });
 }

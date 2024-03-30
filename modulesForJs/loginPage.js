@@ -20,9 +20,6 @@ export const renderLogin = ({getComments}) => {
     <div class="add-form-row add-form-row-login">
         <button id="log-button" class="add-form-button add-form-button-log">Войти</button>
     </div>
-    <div class="add-form-link">
-        <a href="#" class="add-form-link">Зарегистрироваться</a>
-    </div>
     </div>`;
 
     appElement.innerHTML = loginHtml;
@@ -32,6 +29,12 @@ export const renderLogin = ({getComments}) => {
     const passwordInputElement = document.getElementById('password-input');
 
     buttonLoginElement.addEventListener('click', () => {
+        const logValue = loginInputElement.value.trim();
+        const passValue = passwordInputElement.value.trim();
+        if (logValue === '' || passValue === '') {
+            return alert('Заполните все поля');
+        }
+
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
