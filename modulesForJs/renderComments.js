@@ -3,7 +3,7 @@ import { fetchAndRenderComments, postComment, token } from "./api.js";
 import { name } from "./api.js";
 import { getComments } from "../main.js";
 import { renderLogin } from "./loginPage.js";
-import { format } from "date-fns";
+
 
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
@@ -53,7 +53,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
      ${commentsHtml}
     </ul>
     <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
-    <a class="auth-m" href="#" id="log">авторизуйтесь</a>
+    <a class="auth-move" href="#" id="log">авторизуйтесь</a>
     </span>
   </div>`
 
