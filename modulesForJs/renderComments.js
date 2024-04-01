@@ -135,6 +135,28 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
 
 
 
+// Пример
+// export function renderForm(name_ooooooooooooooooooooooooo) {
+
+//   const appElement = document.getElementById('app2');
+
+//   let formElement = document.createElement('div');
+
+//   formElement.className = 'add-form';
+
+//   formElement.innerHTML = '<input id="name-input" type="text" class="add-form-name" value="'+name_ooooooooooooooooooooooooo+'" disabled id="name-input" readonly/><textarea id="comment-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий" rows="4"></textarea><div class="add-form-row"><button id="add-button" class="add-form-button">Написать</button></div>';
+
+// //   const formHtml =
+
+// //   `<div id="add-form" class="add-form">
+
+// // </div>`;
+
+//   appElement.appendChild(formElement);
+
+// }
+
+
 
 
 
