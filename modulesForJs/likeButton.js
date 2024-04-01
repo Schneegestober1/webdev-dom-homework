@@ -14,7 +14,7 @@ export function initLikeButtonListeners({ comments, renderComments, reply, remov
 
             addLikesButtonsElement.classList.add('-loading-like')
 
-            delay(4000).then(() => {
+            delay().then(() => {
 
                 if (comments[index].isLiked === false) {
 

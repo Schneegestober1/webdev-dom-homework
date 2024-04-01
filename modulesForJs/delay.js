@@ -1,6 +1,6 @@
 // Отложенный коммент
 
-export function delay(interval = 300) {
+export function delay(interval = 500) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();

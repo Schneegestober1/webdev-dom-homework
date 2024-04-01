@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+a, a:visited {
+  color: #7334ea;
+}
+
 .container {
   font-family: Helvetica;
   color: #ffffff;
@@ -193,11 +197,6 @@ body {
 }
 
 .auth-link-span {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
+  text-align: center;
 }
 
-.auth-move {
-  margin-left: 5px;
-}

@@ -1,5 +1,5 @@
 // Рендер-функция
-import { fetchAndRenderComments, postComment, token } from "./api.js";
+import { postComment, token } from "./api.js";
 import { name } from "./api.js";
 import { getComments } from "../main.js";
 import { renderLogin } from "./loginPage.js";
@@ -8,6 +8,10 @@ import { renderLogin } from "./loginPage.js";
 
 export function renderComments({ comments, initLikeButtonListeners, reply, removeValidation, delay }) {
   const appElement = document.getElementById('app');
+  
+  const commentInputElement = document.getElementById('comment-input');
+  const draftComment = commentInputElement ? commentInputElement.value : "";
+
   const commentsHtml = comments.map((comment, index) => {
     return `<li class="comment">
     <div class="comment-header">
@@ -39,11 +43,11 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     <div id="add-form" class="add-form">
     <input id="name-input" type="text" class="add-form-name" value="${name}" disabled id="name-input" readonly/>
     <textarea id="comment-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
-      rows="4"></textarea>
+      rows="4">${draftComment}</textarea>
     <div class="add-form-row">
       <button id="add-button" class="add-form-button">Написать</button>
     </div>
-  </div>`;
+    </div>`;
 
   } else {
 
@@ -52,9 +56,9 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
     <ul id="list" class="comments">
      ${commentsHtml}
     </ul>
-    <span class="auth-link-span" id="load-comment">Чтобы добавить комментарий, 
+    <p class="auth-link-span" id="load-comment">Чтобы добавить комментарий,
     <a class="auth-move" href="#" id="log">авторизуйтесь</a>
-    </span>
+    </p>
   </div>`
 
   }
