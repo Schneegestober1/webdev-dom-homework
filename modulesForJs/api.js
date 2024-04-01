@@ -114,7 +114,7 @@ export function login({ login, password }) {
 
         return response.json();
 
-    }).catch(() => {
+    }).catch((err) => {
 
         if (err.message === 'Failed to fetch') {
 

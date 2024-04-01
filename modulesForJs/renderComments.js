@@ -37,7 +37,7 @@ export function renderComments({ comments, initLikeButtonListeners, reply, remov
      ${commentsHtml}
     </ul>
     <div id="add-form" class="add-form">
-    <input id="name-input" type="text" class="add-form-name" value=${name} disabled id="name-input" readonly/>
+    <input id="name-input" type="text" class="add-form-name" value="${name}" disabled id="name-input" readonly/>
     <textarea id="comment-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
       rows="4"></textarea>
     <div class="add-form-row">
