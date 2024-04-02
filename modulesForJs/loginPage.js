@@ -39,9 +39,14 @@ export const renderLogin = ({getComments}) => {
             login: loginInputElement.value,
             password: passwordInputElement.value,
         }).then((responseData) => {
+            if (responseData && responseData.user) {
             setToken(responseData.user.token);
             setName(responseData.user.name);
             getComments();
+            } else {
+                console.error('Неверный логин или пароль');
+                alert('Неверный логин или пароль');
+            }
         });
         loginInputElement.value = '';
         passwordInputElement.value = '';
